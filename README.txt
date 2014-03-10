@@ -8,4 +8,12 @@ Help
 
 (As in where I got it :D)
 
- * TTS: http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)
+TTS
+---
+ * http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)
+
+Sounds
+------
+
+ * http://www.raspberrypi-spy.co.uk/2012/06/raspberry-pi-speakers-analog-sound-test/
+ * http://stackoverflow.com/questions/4467240/play-simple-beep-with-python-without-external-library
