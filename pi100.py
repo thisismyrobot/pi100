@@ -15,7 +15,7 @@ COM = '/dev/ttyUSB0'
 def getspeed(ser):
     """ Helper to get the speed in KPH, using a pre-created serial connection.
     """
-    # Code to send to get KPH
+    # Code to send to get KPH (on Toyota ECUs at least)
     HEX = '0D'
 
     # Result length in bytes
@@ -79,7 +79,10 @@ if __name__ == '__main__':
     launchtime = None
     while True:
         # Get current speed
-        speed = getspeed(ser)
+        try:
+            speed = getspeed(ser)
+        except:
+            speed = 0
 
         # If just stopped, arm for launch
         if speed == 0 and lastspeed > 0:
