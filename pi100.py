@@ -1,5 +1,4 @@
-import datetime
-import collections
+import os
 import serial
 import string
 import sys
@@ -45,11 +44,7 @@ def getspeed(ser):
 def notify(text):
     """ Will become TTS notifications...
     """
-    # Test using beeps - TTS later
-    if text = 'pi 100 is loaded':
-        for i in range(3):
-            sys.stdout.write('\a')
-            time.sleep(0.5)
+    os.system('echo "{}" | festival --tts'.format(text))
 
 if __name__ == '__main__':
     ### Hardware initialisation
@@ -72,4 +67,4 @@ if __name__ == '__main__':
     time.sleep(1)
 
     # Notify that loaded
-    notify('pi 100 is loaded')
+    notify('pi 100 loaded')

@@ -3,6 +3,11 @@ pi100
 
 Using a raspbery pi to do 0-100kph timing via an ODBC connector.
 
+Requires
+========
+
+* ODBC connector
+
 Help
 ====
 
