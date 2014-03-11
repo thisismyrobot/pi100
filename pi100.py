@@ -42,9 +42,14 @@ def getspeed(ser):
     return kph
 
 def notify(text):
-    """ Will become TTS notifications...
+    """ TTS notifications
     """
     os.system('echo "{}" | festival --tts'.format(text))
+
+def record(text):
+    with open('log.txt', 'a') as f:
+        f.write('{}\n'.format(text))
+
 
 if __name__ == '__main__':
     ### Hardware initialisation
@@ -68,3 +73,36 @@ if __name__ == '__main__':
 
     # Notify that loaded
     notify('pi 100 loaded')
+
+    # Main loop
+    lastspeed = -1
+    launchtime = None
+    while True:
+        # Get current speed
+        speed = getspeed(ser)
+
+        # If just stopped, arm for launch
+        if speed == 0 and lastspeed > 0:
+            notify('Armed for launch')
+
+        # If just launched but not hit 100 yet
+        elif lastspeed == 0 and speed > 0:
+            launchtime = time.time()
+            notify('Launch recorded')
+
+        # If just crossed 100 from a launch
+        elif launchtime is not None and speed >= 100:
+            endtime = time.time()
+            duration = round(endtime - launchtime, 3)
+            notify('Zero to one hundred recorded at {} seconds'.format(duration))
+            record('0-100: {}'.format(duration))
+
+            # Reset
+            launchtime = None
+
+        # If not hitting 100 in 20 seconds...
+        elif launchtime is not None and time.time() - launchtime > 20:
+            notify('Cancelling launch timer')
+            launchtime = None
+
+        lastspeed = speed
