@@ -1,4 +1,3 @@
-
 ### Warning this is 100% Work-In-Progress so use at own risk...
 
 pi100
@@ -9,7 +8,10 @@ Using a raspbery pi to do 0-100kph timing via an ODBC connector.
 Requires
 ========
 
-* ODBC connector
+* Pi with Wheezy
+* pyserial
+* Festical for TTS (sudo apt-get install festival)
+* ODBC connector: http://www.sparkfun.com/products/9555
 
 Help
 ====
